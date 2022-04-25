@@ -30,5 +30,35 @@ namespace WpfVorbereitung
         {
             this.DataContext = new MainWindowViewModel();
         }
+
+        private void ListBox_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var content = e.Source.ToString();
+
+            DragDrop.DoDragDrop(sender as DependencyObject, content, DragDropEffects.Copy);
+
+        }
+
+        private void Label_DragOver(object sender, DragEventArgs e)
+        {
+            var valid = e.Data.GetDataPresent(typeof(string));
+
+            if (valid)
+            {
+                e.Effects = DragDropEffects.Copy;
+                e.Handled = true;
+            }
+            
+        }
+
+        private void Label_Drop(object sender, DragEventArgs e)
+        {
+            (sender as Label).Content = "Value: "+e.Data.GetData(typeof(string));
+        }
+
+        private void UserControl1_SomeEvent(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfVorbereitung"
-        xmlns:viewmodel="clr-namespace:MVVMLib;assembly=MVVMLib"
+        xmlns:viewmodel="clr-namespace:MVVMLib;assembly=MVVMLib" 
+        xmlns:wpfcontrollibrary="clr-namespace:WpfControlLibrary;assembly=WpfControlLibrary"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Loaded="Window_Loaded">
@@ -13,8 +14,29 @@
     </Window.DataContext>
     <Grid>
         <StackPanel>
-        <Label Content="{Binding Title}"></Label>
-        <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label Content="{Binding Title}"></Label>
+            <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label Content="{Binding EmployeeCount}"></Label>
+            <Label Content="{Binding Count}"></Label>
+            <Button Command="{Binding AddArtist}">Count</Button>
+            <ListBox PreviewMouseDown="ListBox_MouseDown">
+                <ListBoxItem>1</ListBoxItem>
+                <ListBoxItem>2</ListBoxItem>
+                <ListBoxItem>3</ListBoxItem>
+            </ListBox>
+            <TreeView PreviewMouseDown="ListBox_MouseDown">
+                <TreeViewItem Header="1">
+                    <TreeViewItem Header="1.2"></TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="2">
+                    <TreeViewItem Header="2.2"></TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+            <Label AllowDrop="True" DragOver="Label_DragOver" Drop="Label_Drop">Nix</Label>
+            <wpfcontrollibrary:UserControl1 SomeEvent="UserControl1_SomeEvent" SomeThing="somethingg"></wpfcontrollibrary:UserControl1>
         </StackPanel>
+
+        
+
     </Grid>
 </Window>
